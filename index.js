@@ -147,3 +147,9 @@ function zdk6(){
     console.log(`Preporucena kupnnja:`);
     availableBasket.forEach(el=>console.log(el));
 }
+
+function zdk7() {
+    fruits.sort((x,y ) => x.name > y.name ? 1 : -1);
+    fruits.forEach(el => console.log(el));
+}
+
