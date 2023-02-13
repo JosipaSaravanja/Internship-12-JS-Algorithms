@@ -50,9 +50,9 @@ function zdk1(){
     const people=[];
     let loop=true;
     while(loop){
-        const firstName=prompt("Ime:");
-        const lastName=prompt("Prezime:");
-        const height=Number(prompt("Visina:"));
+        const firstName=prompt(`Ime:`);
+        const lastName=prompt(`Prezime:`);
+        const height=Number(prompt(`Visina:`));
 
         people.push(new Person(firstName, lastName, height));
         const answer=prompt(`Želite li završiti unos (DA/NE)?`);
@@ -88,11 +88,11 @@ function zdk2(){
     const num=Number(prompt(`Broj osoba koje želite uniti:`));
     const people=[]
     for(i=0; i<num; i++){
-        const firstName=prompt("Ime:");
-        const lastName=prompt("Prezime:");
-        const eyeColor=prompt("Boja očiju:");
-        const hairColor=prompt("Boja kose:");
-        const height=Number(prompt("Visina:"));
+        const firstName=prompt(`Ime:`);
+        const lastName=prompt(`Prezime:`);
+        const eyeColor=prompt(`Boja očiju:`);
+        const hairColor=prompt(`Boja kose:`);
+        const height=Number(prompt(`Visina:`));
 
         people.push(new Person(firstName, lastName, eyeColor, hairColor, height));
     }
@@ -118,8 +118,8 @@ function zdk4(){
     let fruitChanged=JSON.parse(JSON.stringify(fruitsOriginal));
 
     fruitChanged = fruitChanged.map(fruit => {
-        if (fruit.colors.indexOf("yellow")!==-1)
-            fruit.colors[fruit.colors.indexOf("yellow")] = "red"
+        if (fruit.colors.indexOf(`yellow`)!==-1)
+            fruit.colors[fruit.colors.indexOf(`yellow`)] = `red`
         return fruit
     })
 
@@ -128,8 +128,8 @@ function zdk4(){
 }
 
 function zdk5(){
-    //filtrirani ORIGINALNI (bez yellow->red) niza
-    const fruits5 = fruitsOriginal.filter(fruit=>fruit.colors.includes("yellow"));
+    //filtrirani ORIGINALNI (bez yellow->red) niz
+    const fruits5 = fruitsOriginal.filter(fruit=>fruit.colors.includes(`yellow`));
     
     fruits5.forEach(el=>console.log(el));
 }
@@ -151,5 +151,32 @@ function zdk6(){
 function zdk7() {
     fruits.sort((x,y ) => x.name > y.name ? 1 : -1);
     fruits.forEach(el => console.log(el));
+}
+
+function zdk8() {
+    const num = Number(prompt(`Unesite zadnji broj:`))
+    let secondNumber = num;
+    let firstNumber = 0;
+    let sum=0;
+    Gaus(firstNumber, secondNumber, sum)
+}
+
+function Gaus(a, b, sum){
+    sum+= a+b;
+    a++;
+    b--;
+    if(a>=b){
+        if(a==b){
+            sum+=a;
+        }
+        console.log(sum);
+    }else{
+        Gaus (a, b, sum);
+    }
+}
+
+function zdk9() {
+    const input = prompt(`Unesite riječi odvojene razmacima`);
+    console.log(input.split(` `).toString());
 }
 
