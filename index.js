@@ -1,24 +1,43 @@
-class Fruit{
-    constructor(name, colors, isInBasket){
+class ColorfulFruit{
+    constructor(name, colors, isForSale){
         this.name=name;
         this.colors=colors;
-        this.isInBasket=isInBasket;
+        this.isForSale=isForSale;
     }
 }
 
 const fruitsOriginal = [
-    new Fruit('banana', ['yellow'], false),
-    new Fruit('apple', ['green', 'yellow'], false),
-    new Fruit('orange', ['orange'], false),
-    new Fruit('kiwi', ['brown', 'green'], false),
-    new Fruit('watermelon', ['green', 'red'], false),
-    new Fruit('strawberry', ['green', 'red'], false),
-    new Fruit('lime', ['green', 'yellow'], false),
-    new Fruit('apricot', ['red', 'yellow'], false),
-    new Fruit('cantaloupe', ['orange', 'green'], false),
+    new ColorfulFruit('banana', ['yellow'], false),
+    new ColorfulFruit('apple', ['green', 'yellow'], false),
+    new ColorfulFruit('orange', ['orange'], false),
+    new ColorfulFruit('kiwi', ['brown', 'green'], false),
+    new ColorfulFruit('watermelon', ['green', 'red'], false),
+    new ColorfulFruit('strawberry', ['green', 'red'], false),
+    new ColorfulFruit('lime', ['green', 'yellow'], false),
+    new ColorfulFruit('apricot', ['red', 'yellow'], false),
+    new ColorfulFruit('cantaloupe', ['orange', 'green'], false),
 ];
 
-//1. Zdk
+
+class Fruit{
+    constructor(name, color, isForSale){
+        this.name=name;
+        this.color=color;
+        this.isForSale=isForSale;
+    }
+}
+const fruits = [
+    new Fruit('banana', 'yellow', false),
+    new Fruit('apple', 'green', false),
+    new Fruit('orange', 'orange', false),
+    new Fruit('kiwi', 'brown', false),
+    new Fruit('watermelon', 'red', false),
+    new Fruit('strawberry', 'red', true),
+    new Fruit('lime', 'lime', true),
+    new Fruit('apricot', 'red', true),
+    new Fruit('cantaloupe', 'green', true),
+];
+
 function zdk1(){
     class Person{
         constructor(firstName, lastName, height){
@@ -54,7 +73,7 @@ function zdk1(){
     }
     console.log(personDifference);
 }
-//2. Zdk
+
 function zdk2(){
     class Person{
         constructor(firstName, lastName, eyeColor, haircolor, height){
@@ -66,7 +85,7 @@ function zdk2(){
         }
     }
 
-    const num=Number(prompt(`Broj osoba koje elite uniti:`));
+    const num=Number(prompt(`Broj osoba koje želite uniti:`));
     const people=[]
     for(i=0; i<num; i++){
         const firstName=prompt("Ime:");
@@ -78,67 +97,53 @@ function zdk2(){
         people.push(new Person(firstName, lastName, eyeColor, hairColor, height));
     }
 
-    people.sort((x, y) => {
-        if (x.height >= y.height)
-            return 1;
-        else
-            return -1;
-    })
+    people.sort((x, y) => x.height >= y.height? 1: -1)
 
     const overMedian = people.slice(people.length/2, people.length);
-    overMedian.forEach(person=> {
-        person.eyeColor===person.hairColor? console.log(person):false;
-    });
+    overMedian.forEach(person=>person.eyeColor===person.hairColor? console.log(person):false);
 }
 
-//3. Zdk
 function zdk3(){
-    class Fruit{
-        constructor(name, color, isInBasket){
-            this.name=name;
-            this.color=color;
-            this.isInBasket=isInBasket;
-        }
-    }
-    const fruits = [
-        new Fruit('banana', 'yellow', false),
-        new Fruit('apple', 'green', false),
-        new Fruit('orange', 'orange', false),
-        new Fruit('kiwi', 'brown', false),
-        new Fruit('watermelon', 'red', false),
-        new Fruit('strawberry', 'red', false),
-        new Fruit('lime', 'lime', false),
-        new Fruit('apricot', 'red', false),
-        new Fruit('cantaloupe', 'green', false),
-    ];
-
     const filteredFruits = fruits.filter(fruit=> {
         return fruit.name === fruit.color
     });
 
-    filteredFruits.forEach(fruit=> {
-        console.log(fruit)
-    });
+    filteredFruits.forEach(fruit=> console.log(fruit));
 }
 
-//4. Zdk
-
-
 function zdk4(){
-    console.log(fruitsOriginal);
+    console.log(`Originalni niz:`)
+    fruitsOriginal.forEach(el=>console.log(el));
+
     let fruitChanged=JSON.parse(JSON.stringify(fruitsOriginal));
+
     fruitChanged = fruitChanged.map(fruit => {
         if (fruit.colors.indexOf("yellow")!==-1)
             fruit.colors[fruit.colors.indexOf("yellow")] = "red"
         return fruit
     })
-    console.log(fruitChanged);
+
+    console.log(`Promijenjeni niz:`)
+    fruitChanged.forEach(el=>console.log(el));
 }
-//5. Zdk
+
 function zdk5(){
-    //ispis filtriranog originalnog niza
-    const fruit5 = fruitsOriginal.filter(fruit=>{
-        return fruit.colors.includes("yellow")
+    //filtrirani ORIGINALNI (bez yellow->red) niza
+    const fruits5 = fruitsOriginal.filter(fruit=>fruit.colors.includes("yellow"));
+    
+    fruits5.forEach(el=>console.log(el));
+}
+
+function zdk6(){
+    console.log(`Trenutna košarica:`)
+    fruits.forEach(el=>console.log(el));
+
+    console.log(`Nedostupno (indexi):`);
+    fruits.forEach(el=> {
+        !el.isForSale?console.log(fruits.indexOf(el)):false;
     })
-    console.log(fruit5);
+
+    const availableBasket=fruits.filter(fruit=>{return fruit.isForSale===true});
+    console.log(`Preporucena kupnnja:`);
+    availableBasket.forEach(el=>console.log(el));
 }
