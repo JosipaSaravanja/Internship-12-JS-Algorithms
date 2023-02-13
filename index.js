@@ -1,3 +1,23 @@
+class Fruit{
+    constructor(name, colors, isInBasket){
+        this.name=name;
+        this.colors=colors;
+        this.isInBasket=isInBasket;
+    }
+}
+
+const fruitsOriginal = [
+    new Fruit('banana', ['yellow'], false),
+    new Fruit('apple', ['green', 'yellow'], false),
+    new Fruit('orange', ['orange'], false),
+    new Fruit('kiwi', ['brown', 'green'], false),
+    new Fruit('watermelon', ['green', 'red'], false),
+    new Fruit('strawberry', ['green', 'red'], false),
+    new Fruit('lime', ['green', 'yellow'], false),
+    new Fruit('apricot', ['red', 'yellow'], false),
+    new Fruit('cantaloupe', ['orange', 'green'], false),
+];
+
 //1. Zdk
 function zdk1(){
     class Person{
@@ -102,33 +122,23 @@ function zdk3(){
 }
 
 //4. Zdk
+
+
 function zdk4(){
-    class Fruit{
-        constructor(name, colors, isInBasket){
-            this.name=name;
-            this.colors=colors;
-            this.isInBasket=isInBasket;
-        }
-    }
-
-    const fruitsOriginal = [
-        new Fruit('banana', ['yellow'], false),
-        new Fruit('apple', ['green', 'yellow'], false),
-        new Fruit('orange', ['orange'], false),
-        new Fruit('kiwi', ['brown', 'green'], false),
-        new Fruit('watermelon', ['green', 'red'], false),
-        new Fruit('strawberry', ['green', 'red'], false),
-        new Fruit('lime', ['green', 'yellow'], false),
-        new Fruit('apricot', ['red', 'yellow'], false),
-        new Fruit('cantaloupe', ['orange', 'green'], false),
-    ];
-
     console.log(fruitsOriginal);
     let fruitChanged=JSON.parse(JSON.stringify(fruitsOriginal));
     fruitChanged = fruitChanged.map(fruit => {
-        if (fruit.colors.includes("yellow"))
+        if (fruit.colors.indexOf("yellow")!==-1)
             fruit.colors[fruit.colors.indexOf("yellow")] = "red"
         return fruit
     })
     console.log(fruitChanged);
+}
+//5. Zdk
+function zdk5(){
+    //ispis filtriranog originalnog niza
+    const fruit5 = fruitsOriginal.filter(fruit=>{
+        return fruit.colors.includes("yellow")
+    })
+    console.log(fruit5);
 }
