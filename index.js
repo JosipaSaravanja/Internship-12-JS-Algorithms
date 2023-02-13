@@ -1,10 +1,32 @@
+console.log(`Za pokretanje nekog od zadataka upisati: zdk1()/ zdk4() / zdk3() / zdk4() /...`);
+
+class Fruit{
+    constructor(name, color, isForSale){
+        this.name=name;
+        this.color=color;
+        this.isForSale=isForSale;
+    }
+};
+
+const fruits = [
+    new Fruit('banana', 'yellow', false),
+    new Fruit('apple', 'green', false),
+    new Fruit('orange', 'orange', false),
+    new Fruit('kiwi', 'brown', false),
+    new Fruit('watermelon', 'red', false),
+    new Fruit('strawberry', 'red', true),
+    new Fruit('lime', 'lime', true),
+    new Fruit('apricot', 'red', true),
+    new Fruit('cantaloupe', 'green', true),
+];
+
 class ColorfulFruit{
     constructor(name, colors, isForSale){
         this.name=name;
         this.colors=colors;
         this.isForSale=isForSale;
     }
-}
+};
 
 const fruitsOriginal = [
     new ColorfulFruit('banana', ['yellow'], false),
@@ -18,26 +40,6 @@ const fruitsOriginal = [
     new ColorfulFruit('cantaloupe', ['orange', 'green'], false),
 ];
 
-
-class Fruit{
-    constructor(name, color, isForSale){
-        this.name=name;
-        this.color=color;
-        this.isForSale=isForSale;
-    }
-}
-const fruits = [
-    new Fruit('banana', 'yellow', false),
-    new Fruit('apple', 'green', false),
-    new Fruit('orange', 'orange', false),
-    new Fruit('kiwi', 'brown', false),
-    new Fruit('watermelon', 'red', false),
-    new Fruit('strawberry', 'red', true),
-    new Fruit('lime', 'lime', true),
-    new Fruit('apricot', 'red', true),
-    new Fruit('cantaloupe', 'green', true),
-];
-
 function zdk1(){
     class Person{
         constructor(firstName, lastName, height){
@@ -45,7 +47,7 @@ function zdk1(){
             this.lastName=lastName;
             this.height=height;
         }
-    }
+    };
 
     const people=[];
     let loop=true;
@@ -58,6 +60,7 @@ function zdk1(){
         const answer=prompt(`Želite li završiti unos (DA/NE)?`);
         answer===`DA` ? loop=false: false;
     }
+
     let avg=0;
     for(const person of people){
         avg+=person.height;
@@ -86,7 +89,7 @@ function zdk2(){
     }
 
     const num=Number(prompt(`Broj osoba koje želite uniti:`));
-    const people=[]
+    const people=[];
     for(i=0; i<num; i++){
         const firstName=prompt(`Ime:`);
         const lastName=prompt(`Prezime:`);
@@ -97,16 +100,14 @@ function zdk2(){
         people.push(new Person(firstName, lastName, eyeColor, hairColor, height));
     }
 
-    people.sort((x, y) => x.height >= y.height? 1: -1)
+    people.sort((x, y) => x.height >= y.height? 1: -1);
 
     const overMedian = people.slice(people.length/2, people.length);
     overMedian.forEach(person=>person.eyeColor===person.hairColor? console.log(person):false);
 }
 
 function zdk3(){
-    const filteredFruits = fruits.filter(fruit=> {
-        return fruit.name === fruit.color
-    });
+    const filteredFruits = fruits.filter(fruit=> fruit.name === fruit.color);
 
     filteredFruits.forEach(fruit=> console.log(fruit));
 }
@@ -118,24 +119,22 @@ function zdk4(){
     let fruitChanged=JSON.parse(JSON.stringify(fruitsOriginal));
 
     fruitChanged = fruitChanged.map(fruit => {
-        if (fruit.colors.indexOf(`yellow`)!==-1)
-            fruit.colors[fruit.colors.indexOf(`yellow`)] = `red`
-        return fruit
+        fruit.colors.indexOf(`yellow`)!==-1 ? fruit.colors[fruit.colors.indexOf(`yellow`)] = `red`: false;
+        return fruit;
     })
 
-    console.log(`Promijenjeni niz:`)
+    console.log(`Promijenjeni niz:`);
     fruitChanged.forEach(el=>console.log(el));
 }
 
 function zdk5(){
     //filtrirani ORIGINALNI (bez yellow->red) niz
     const fruits5 = fruitsOriginal.filter(fruit=>fruit.colors.includes(`yellow`));
-    
     fruits5.forEach(el=>console.log(el));
 }
 
 function zdk6(){
-    console.log(`Trenutna košarica:`)
+    console.log(`Trenutna košarica:`);
     fruits.forEach(el=>console.log(el));
 
     console.log(`Nedostupno (indexi):`);
@@ -154,11 +153,11 @@ function zdk7() {
 }
 
 function zdk8() {
-    const num = Number(prompt(`Unesite zadnji broj:`))
+    const num = Number(prompt(`Unesite zadnji broj:`));
     let secondNumber = num;
     let firstNumber = 0;
     let sum=0;
-    Gaus(firstNumber, secondNumber, sum)
+    Gaus(firstNumber, secondNumber, sum);
 }
 
 function Gaus(a, b, sum){
@@ -166,9 +165,7 @@ function Gaus(a, b, sum){
     a++;
     b--;
     if(a>=b){
-        if(a==b){
-            sum+=a;
-        }
+        a===b? sum+=a : false;
         console.log(sum);
     }else{
         Gaus (a, b, sum);
