@@ -70,3 +70,65 @@ function zdk2(){
         person.eyeColor===person.hairColor? console.log(person):false;
     });
 }
+
+//3. Zdk
+function zdk3(){
+    class Fruit{
+        constructor(name, color, isInBasket){
+            this.name=name;
+            this.color=color;
+            this.isInBasket=isInBasket;
+        }
+    }
+    const fruits = [
+        new Fruit('banana', 'yellow', false),
+        new Fruit('apple', 'green', false),
+        new Fruit('orange', 'orange', false),
+        new Fruit('kiwi', 'brown', false),
+        new Fruit('watermelon', 'red', false),
+        new Fruit('strawberry', 'red', false),
+        new Fruit('lime', 'lime', false),
+        new Fruit('apricot', 'red', false),
+        new Fruit('cantaloupe', 'green', false),
+    ];
+
+    const filteredFruits = fruits.filter(fruit=> {
+        return fruit.name === fruit.color
+    });
+
+    filteredFruits.forEach(fruit=> {
+        console.log(fruit)
+    });
+}
+
+//4. Zdk
+function zdk4(){
+    class Fruit{
+        constructor(name, colors, isInBasket){
+            this.name=name;
+            this.colors=colors;
+            this.isInBasket=isInBasket;
+        }
+    }
+
+    const fruitsOriginal = [
+        new Fruit('banana', ['yellow'], false),
+        new Fruit('apple', ['green', 'yellow'], false),
+        new Fruit('orange', ['orange'], false),
+        new Fruit('kiwi', ['brown', 'green'], false),
+        new Fruit('watermelon', ['green', 'red'], false),
+        new Fruit('strawberry', ['green', 'red'], false),
+        new Fruit('lime', ['green', 'yellow'], false),
+        new Fruit('apricot', ['red', 'yellow'], false),
+        new Fruit('cantaloupe', ['orange', 'green'], false),
+    ];
+
+    console.log(fruitsOriginal);
+    let fruitChanged=JSON.parse(JSON.stringify(fruitsOriginal));
+    fruitChanged = fruitChanged.map(fruit => {
+        if (fruit.colors.includes("yellow"))
+            fruit.colors[fruit.colors.indexOf("yellow")] = "red"
+        return fruit
+    })
+    console.log(fruitChanged);
+}
